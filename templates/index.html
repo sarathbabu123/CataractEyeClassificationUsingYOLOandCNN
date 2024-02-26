@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <h1>Cataract Eye Detector<h1>
+    <h1>Upload Image</h1>
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif" />
+      <button type="submit">Upload</button>
+    </form>
+    {%if img%}
+    <img src="{{ url_for('static', filename=img) }}" alt="Uploaded Image" />
+    {%else%}
+    <p>image will be shown here</p>
+    <p>
+      {%endif%} {% with messages = get_flashed_messages() %} {% if messages %}
+    </p>
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <h2>Get a Quick Diagnosis<h2>
+      <img src="{{url_for('video')}}">
+  </body>
+</html>
